@@ -3,5 +3,5 @@ project(integrador-ayp3 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(integrador-ayp3 main.c
-        student.c)
+add_executable(integrador-ayp3 src/main.c
+        src/entity/student.c)
