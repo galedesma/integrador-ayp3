@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <string.h>
+#include "subject.h"
 #define maxChar 30
 
 typedef struct student{
@@ -10,11 +12,11 @@ typedef struct student{
     struct student *sig;
 } Estudiante;
 
+
 void darDeAltaEstudiante (Estudiante **lista){
 
     int id;
     Estudiante *nuevoEstudiante  = malloc(sizeof(Estudiante));
-
     printf("Ingrese el nombre:\n");
     scanf("%s",nuevoEstudiante->nombre);
     printf("nombre ingresado\n\n");
@@ -53,36 +55,31 @@ void buscarEstudiante(Estudiante **lista) {
         scanf("%d", &opcion);
         switch (opcion) {
             case 1: {
-                //problemas con el char para guardar el dato recibido
                 Estudiante *actual = *lista;
-                char nombre[30];
+                char nombre[maxChar];
                 printf("Inserte el nombre:\n");
-                scanf("%s", nombre);
+                scanf("%30s", nombre);
                 while (actual != NULL) {
-                    if (actual->nombre == nombre) {
+                    if (strcmp(actual->nombre, nombre) == 0) {
                         printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", actual->id, actual->nombre,
                                actual->apellido, actual->edad);
                     }
                     actual = actual->sig;
-                }
+                }printf("\n");
                 break;
             }
 
             case 2: {
-                //problemas con el char para guardar el dato recibido
                 Estudiante *actual = *lista;
-                char apellido[30];
+                char apellido[maxChar];
                 printf("Inserte el apellido:\n");
-                scanf("%s", apellido);
+                scanf("%30s", apellido);
                 while (actual != NULL) {
-                    if (actual->apellido== apellido) {
+                    if (strcmp(actual->apellido, apellido) == 0) {
                         printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", actual->id, actual->nombre,actual->apellido, actual->edad);
                     }
                     actual = actual->sig;
-                }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+                } printf("\n");
                 break;
             }
             case 3: {
@@ -95,10 +92,7 @@ void buscarEstudiante(Estudiante **lista) {
                         printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", actual->id, actual->nombre,actual->apellido, actual->edad);
                     }
                     actual = actual->sig;
-                }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+                } printf("\n");
                 break;
             }
             case 4: {
@@ -114,10 +108,7 @@ void buscarEstudiante(Estudiante **lista) {
                         printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", actual->id, actual->nombre,actual->apellido, actual->edad);
                     }
                     actual = actual->sig;
-                }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+                }printf("\n");
                 break;
             }
         }
@@ -159,9 +150,7 @@ void modificarEstudiante (Estudiante **lista){
                     }
                     actual = actual->sig;
                 }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+
             }break;
 
             case 2:{
@@ -174,9 +163,7 @@ void modificarEstudiante (Estudiante **lista){
                     }
                     actual = actual->sig;
                 }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+
             }break;
             case 3:{
                 Estudiante *actual = *lista;
@@ -188,9 +175,7 @@ void modificarEstudiante (Estudiante **lista){
                     }
                     actual = actual->sig;
                 }
-                if(actual == NULL){
-                    printf("No se encontro el estudiante!\n\n");
-                }
+
             }break;
         }
     }
@@ -219,10 +204,16 @@ void eliminarEstudiante (Estudiante **lista){
     }
 }
 
-void incribirAMateria(Estudiante **lista){
+void incribirAMateria(Estudiante **listaEst, Materia **listaMat){
+    //?????
+}
+
+void rendirMateria(Estudiante **listaEst, Materia **listaMat){
     //?????
 }
 
 void ordenar(Estudiante **lista){
     //???????????????
 }
+
+

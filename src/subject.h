@@ -1,13 +1,13 @@
 
 #ifndef INTEGRADOR_AYP3_MATERIAS_H
 #define INTEGRADOR_AYP3_MATERIAS_H
-
+#define maxChar 30
 #endif //INTEGRADOR_AYP3_MATERIAS_H
 
-typedef struct materia{
-    char* nombre;
+typedef struct subject{
+    char nombre[maxChar];
     int id;
-    struct materia *sig;
+    struct subject *sig;
 } Materia;
 
 void darDeAltaMateria (Materia **lista);

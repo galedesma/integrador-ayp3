@@ -5,5 +5,4 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(integrador-ayp3 src/main.c
         src/student.c
-        src/subject.c
-        src/materias.c)
+        src/subject.c)

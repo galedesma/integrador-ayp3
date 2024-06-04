@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include "student.h"
-#include "materias.h"
 
-void menuEstudiantes(Estudiante **lista){
-    int opcion = 7;
+void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
+    int opcion = 8;
     while(opcion !=0){
         printf("---------MENU DE ESTUDIANTES----------\n\n");
         printf("[1] Dar de Alta Estudiante\n");
@@ -12,33 +11,38 @@ void menuEstudiantes(Estudiante **lista){
         printf("[4] Modificar Datos\n");
         printf("[5] Eliminar\n");
         printf("[6] Incribir estudiante a materia\n");
+        printf("[7] Rendir materia\n");
         printf("[0] Volver al Menu Principal\n");
         scanf("%d",&opcion);
 
         switch (opcion) {
             case 1: {
-                darDeAltaEstudiante(lista);
+                darDeAltaEstudiante(listaEst);
                 break;
             }
             case 2: {
-                buscarEstudiante(lista);
+                buscarEstudiante(listaEst);
                 break;
             }
             case 3: {
-                listarEstudiantes(*lista);
+                listarEstudiantes(*listaEst);
                 break;
             }
             case 4: {
-                modificarEstudiante(lista);
+                modificarEstudiante(listaEst);
                 break;
             }
             case 5: {
-                eliminarEstudiante(lista);
+                eliminarEstudiante(listaEst);
                 break;
             }
             case 6: {
-                incribirAMateria(lista);
+                incribirAMateria(listaEst, listaMat);
                 break;
+            }
+            case 7: {
+            rendirMateria(listaEst, listaMat);
+            break;
             }
         }
     }
@@ -84,6 +88,7 @@ void menuMaterias(Materia **lista){
 int main(void) {
     Materia *listaDeMaterias = NULL;
     Estudiante *listaDeEstudiantes = NULL;
+
     int opcion = 3;
     while(opcion !=0){
         printf("---------MENU PRINCIPAL----------\n\n");
@@ -94,7 +99,7 @@ int main(void) {
 
         switch (opcion) {
             case 1: {
-                menuEstudiantes(&listaDeEstudiantes);
+                menuEstudiantes(&listaDeEstudiantes, &listaDeMaterias);
                 break;
             }
             case 2: {
