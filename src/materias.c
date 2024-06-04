@@ -3,9 +3,30 @@
 
 typedef struct materia{
     char* nombre;
+    int id;
     struct materia *sig;
 } Materia;
 
-void darDeAltaMateria (Materia **lista, char *nombre){
+void darDeAltaMateria (Materia **lista){
+
+}
+
+void buscarMateria(Materia **lista){
+
+}
+
+void listarMaterias(Materia *lista){
+
+}
+
+void modificarMateria (Materia **lista){
+
+}
+
+void eliminarMateria(Materia **lista){
+
+}
+
+void ordenarMaterias(Materia **lista){
 
 }

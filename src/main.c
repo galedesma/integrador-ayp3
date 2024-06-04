@@ -58,23 +58,23 @@ void menuMaterias(Materia **lista){
 
         switch (opcion) {
             case 1: {
-                darDeAltaEstudiante(&lista);
+                darDeAltaMateria(lista);
                 break;
             }
             case 2: {
-                buscarEstudiante(&lista);
+                buscarMateria(lista);
                 break;
             }
             case 3: {
-                listarEstudiante(lista);
+                listarMaterias(*lista);
                 break;
             }
             case 4: {
-                modificarEstudiante(&lista);
+                modificarMateria(lista);
                 break;
             }
             case 5: {
-                eliminarEstudiante(&lista);
+                eliminarMateria(lista);
                 break;
             }
         }
@@ -102,7 +102,5 @@ int main(void) {
             }
         }
     }
-
-
     return 0;
 }
