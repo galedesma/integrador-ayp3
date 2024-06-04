@@ -25,7 +25,7 @@ void menuEstudiantes(Estudiante **lista){
                 break;
             }
             case 3: {
-                listarEstudiante(*lista);
+                listarEstudiantes(*lista);
                 break;
             }
             case 4: {

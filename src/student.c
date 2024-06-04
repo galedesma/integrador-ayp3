@@ -124,7 +124,7 @@ void buscarEstudiante(Estudiante **lista) {
     }
 }
 
-void listarEstudiante (Estudiante *lista){
+void listarEstudiantes (Estudiante *lista){
     if(lista == NULL){
         printf("La lista esta vacia!\n\n");
     }else{

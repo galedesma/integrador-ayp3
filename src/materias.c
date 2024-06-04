@@ -19,7 +19,7 @@ void listarMaterias(Materia *lista){
 
 }
 
-void modificarMateria (Materia **lista){
+void modificarMateria(Materia **lista){
 
 }
 

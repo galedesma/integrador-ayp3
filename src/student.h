@@ -16,11 +16,11 @@ void darDeAltaEstudiante(Estudiante **lista);
 
 void buscarEstudiante(Estudiante **lista);
 
-void listarEstudiante (Estudiante *lista);
+void listarEstudiantes(Estudiante *lista);
 
-void modificarEstudiante (Estudiante **lista);
+void modificarEstudiante(Estudiante **lista);
 
-void eliminarEstudiante (Estudiante **lista);
+void eliminarEstudiante(Estudiante **lista);
 
 void incribirAMateria(Estudiante **lista);
 
