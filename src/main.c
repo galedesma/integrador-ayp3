@@ -82,7 +82,8 @@ void menuMaterias(Materia **lista){
 }
 
 int main(void) {
-    Estudiante *lista = NULL;
+    Materia *listaDeMaterias = NULL;
+    Estudiante *listaDeEstudiantes = NULL;
     int opcion = 3;
     while(opcion !=0){
         printf("---------MENU PRINCIPAL----------\n\n");
@@ -93,11 +94,11 @@ int main(void) {
 
         switch (opcion) {
             case 1: {
-                menuEstudiantes(&lista);
+                menuEstudiantes(&listaDeEstudiantes);
                 break;
             }
             case 2: {
-                menuMaterias(&lista);
+                menuMaterias(&listaDeMaterias);
                 break;
             }
         }
