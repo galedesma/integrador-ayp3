@@ -17,14 +17,15 @@ void darDeAltaMateria (Materia **lista){
 
     printf("Ingrese el nombre:\n");
     scanf("%s",nuevaMateria->nombre);
-    printf("Materia agregada\n");
-    nuevaMateria->sig = NULL;
 
-    if(lista == NULL){
+    printf("Materia agregada\n");
+
+    nuevaMateria->sig = NULL;
+    if(*lista == NULL){
         nuevaMateria->id = 1;
-        lista = nuevaMateria;
+        *lista = nuevaMateria;
     } else {
-        Materia *cursor = lista;
+        Materia *cursor = *lista;
         while(cursor->sig != NULL){
             cursor = cursor->sig;
         }
