@@ -10,6 +10,7 @@ typedef struct student{
     int edad;
     int id;
     struct student *sig;
+    struct subject *anotadas;
 } Estudiante;
 
 
@@ -205,15 +206,15 @@ void eliminarEstudiante (Estudiante **lista){
 }
 
 void incribirAMateria(Estudiante **listaEst, Materia **listaMat){
-    //?????
+    //Agregar elemento a anotadas
 }
 
 void rendirMateria(Estudiante **listaEst, Materia **listaMat){
-    //?????
+    //Dada una materia en anotadas, agregar score (y quizás setear approved true/false dependiendo la nota)
 }
 
 void ordenar(Estudiante **lista){
-    //???????????????
+    //Ordenar lista alfabeticamente?
 }
 
 

@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <stdbool.h>
 #define maxChar 30
 
 typedef struct subject{
     char nombre[maxChar];
     int id;
+    int score;
+    //bool approved;
     struct subject *sig;
 } Materia;
 
@@ -32,7 +35,7 @@ void darDeAltaMateria (Materia **lista){
 }
 
 void buscarMateria(Materia **lista){
-
+   //Buscar por nombre
 }
 
 void listarMaterias(Materia *lista){
@@ -47,13 +50,13 @@ void listarMaterias(Materia *lista){
 }
 
 void modificarMateria(Materia **lista){
-
+   //Modificar atributos como en Estudiante
 }
 
 void eliminarMateria(Materia **lista){
-
+    //Eliminar como en Estudiante
 }
 
 void ordenarMaterias(Materia **lista){
-
+    //Ordenar lista alfabeticamente?
 }
