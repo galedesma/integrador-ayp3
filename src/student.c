@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+#include <stdbool.h>
 #include "subject.h"
 #define maxChar 30
 
@@ -9,8 +10,8 @@ typedef struct student{
     char apellido[maxChar];
     int edad;
     int id;
-    struct student *sig;
     struct subject *anotadas;
+    struct student *sig;
 } Estudiante;
 
 
@@ -117,12 +118,15 @@ void buscarEstudiante(Estudiante **lista) {
 }
 
 void listarEstudiantes (Estudiante *lista){
+
     if(lista == NULL){
         printf("La lista esta vacia!\n\n");
     }else{
         while(lista != NULL) {
-        printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", lista->id, lista->nombre, lista->apellido, lista->edad);
-        lista = lista->sig;
+            printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", lista->id, lista->nombre, lista->apellido, lista->edad);
+
+            lista = lista->sig;
+
         }
     }
 }
@@ -195,7 +199,7 @@ void eliminarEstudiante (Estudiante **lista){
     if(actual == NULL){
         printf("No se encontro el Estudiante o la Lista esta Vacia!\n\n");
     }else{
-        if (*lista == actual) //el el primer elemento
+        if (*lista == actual) // el primer elemento
             *lista = actual->sig;
         else
             anterior->sig = actual->sig;
@@ -206,11 +210,69 @@ void eliminarEstudiante (Estudiante **lista){
 }
 
 void incribirAMateria(Estudiante **listaEst, Materia **listaMat){
-    //Agregar elemento a anotadas
+    int ID;
+    char nombreMat[maxChar];
+    Estudiante *estudiantes = *listaEst;
+    Materia *materias = *listaMat;
+
+    printf("Ingrese id del estudiante:\n");
+    scanf("%d",&ID);
+
+    printf("Ingrese el nombre de la materia a la que desea inscribir al estudiante:\n");
+    scanf("%s",nombreMat);
+
+    Materia *materiaAInscribir = NULL;
+    while(materias != NULL){
+        if(strcmp(materias->nombre, nombreMat) == 0){
+            materiaAInscribir = materias;
+        }
+        materias = materias->sig;
+    }
+
+    while(estudiantes != NULL){
+        if(estudiantes->id == ID){
+            estudiantes->anotadas = materiaAInscribir;
+        }
+        estudiantes = estudiantes->sig;
+    }
+    printf("Estudiante INSCRIPTO en %s\n\n",nombreMat);
 }
 
-void rendirMateria(Estudiante **listaEst, Materia **listaMat){
+void rendirMateria(Estudiante **listaEst){
     //Dada una materia en anotadas, agregar score (y quizás setear approved true/false dependiendo la nota)
+    int ID;
+    int nota;
+    char nombreMat[maxChar];
+    Estudiante *estudiantes = *listaEst;
+
+    printf("Ingrese id del estudiante:\n");
+    scanf("%d",&ID);
+
+    printf("Ingrese el nombre de la materia a rendir:\n");
+    scanf("%s",nombreMat);
+
+    printf("Ingrese la nota:\n");
+    scanf("%d",&nota);
+
+    while(estudiantes != NULL){
+        if(estudiantes->id == ID){
+            Materia *materiasInscriptas = estudiantes->anotadas;
+            while(materiasInscriptas != NULL){
+                if(strcmp(materiasInscriptas->nombre, nombreMat) == 0){
+                    materiasInscriptas->score = nota;
+                    materiasInscriptas->approved = aprobado(nota);
+                    printf("Materia RENDIDA\n");
+                    if(materiasInscriptas->approved == true) {
+                        printf("Nota: %d, Condicion: APROBADO\n\n", materiasInscriptas->score);
+                    }else{
+                        printf("Nota: %d, Condicion: DESAPROBADO\n\n", materiasInscriptas->score);
+                    }
+                }
+                materiasInscriptas = materiasInscriptas->sig;
+            }
+        }
+        estudiantes = estudiantes->sig;
+    }
 }
 
 void ordenar(Estudiante **lista){

@@ -41,7 +41,7 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
                 break;
             }
             case 7: {
-            rendirMateria(listaEst, listaMat);
+            rendirMateria(listaEst);
             break;
             }
         }
@@ -53,10 +53,9 @@ void menuMaterias(Materia **lista){
     while(opcion !=0){
         printf("---------MENU DE MATERIAS----------\n\n");
         printf("[1] Dar de Alta Materia\n");
-        printf("[2] Buscar Materia\n");
-        printf("[3] Listar Materias\n");
-        printf("[4] Modificar Datos\n");
-        printf("[5] Eliminar\n");
+        printf("[2] Listar Materias\n");
+        printf("[3] Modificar Datos\n");
+        printf("[4] Eliminar\n");
         printf("[0] Volver al Menu principal\n");
         scanf("%d",&opcion);
 
@@ -66,18 +65,14 @@ void menuMaterias(Materia **lista){
                 break;
             }
             case 2: {
-                buscarMateria(lista);
-                break;
-            }
-            case 3: {
                 listarMaterias(*lista);
                 break;
             }
-            case 4: {
+            case 3: {
                 modificarMateria(lista);
                 break;
             }
-            case 5: {
+            case 4: {
                 eliminarMateria(lista);
                 break;
             }
