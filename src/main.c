@@ -41,9 +41,11 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
                 break;
             }
             case 7: {
-            rendirMateria(listaEst);
-            break;
+                rendirMateria(listaEst);
+                break;
             }
+            default:
+                printf("Por favor, elija una opción válida.\n");
         }
     }
 }
@@ -76,6 +78,8 @@ void menuMaterias(Materia **lista){
                 eliminarMateria(lista);
                 break;
             }
+            default:
+                printf("Por favor, elija una opción válida.\n");
         }
     }
 }
@@ -101,6 +105,8 @@ int main(void) {
                 menuMaterias(&listaDeMaterias);
                 break;
             }
+            default:
+                printf("Por favor, elija una opción válida.\n");
         }
     }
     return 0;
