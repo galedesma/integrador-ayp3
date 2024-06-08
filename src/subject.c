@@ -2,6 +2,7 @@
 #include <malloc.h>
 #include <stdbool.h>
 #include <intrin.h>
+#include <string.h>
 
 #define maxChar 30
 
@@ -100,3 +101,24 @@ bool aprobado(int nota){
 void ordenarMaterias(Materia **lista){
     //Ordenar lista alfabeticamente?
 }
+
+void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo, size_t maxRegistros) {
+    FILE *archivo = fopen(nombreArchivo, "r");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    char linea[1024];
+    size_t cantRegistros = 0;
+
+    while(fgets(linea, sizeof(linea), archivo) && cantRegistros < maxRegistros) {
+        char *token = strtok(linea, ",");
+        if (token) {
+            strcpy(lista[cantRegistros]->nombre, token);
+            token = strtok(NULL, ",");
+            lista[cantRegistros]->id = atoi(token);
+            ++cantRegistros;
+        }
+    }
+};

@@ -1,9 +1,7 @@
-
-#include <stdbool.h>
-
 #ifndef INTEGRADOR_AYP3_MATERIAS_H
 #define INTEGRADOR_AYP3_MATERIAS_H
 #define maxChar 30
+#include <stdbool.h>
 #endif //INTEGRADOR_AYP3_MATERIAS_H
 
 typedef struct subject{
@@ -25,3 +23,5 @@ void eliminarMateria(Materia **lista);
 bool aprobado(int nota);
 
 void ordenarMaterias(Materia **lista);
+
+void cargarMateriasDesdeCsv(Materia **lista);
