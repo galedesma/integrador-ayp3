@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdbool.h>
+#include <intrin.h>
+
 #define maxChar 30
 
 typedef struct subject{
     char nombre[maxChar];
     int id;
     int score;
-    //bool approved;
+    bool approved;
     struct subject *sig;
 } Materia;
 
@@ -35,9 +37,6 @@ void darDeAltaMateria (Materia **lista){
     printf("el id de la Materia es: %d\n\n",nuevaMateria->id);
 }
 
-void buscarMateria(Materia **lista){
-   //Buscar por nombre
-}
 
 void listarMaterias(Materia *lista){
     if(lista == NULL){
@@ -46,16 +45,56 @@ void listarMaterias(Materia *lista){
         while(lista != NULL) {
             printf("ID: %d, Materia: %s\n", lista->id, lista->nombre);
             lista = lista->sig;
-        }
+        } printf("\n");
     }
 }
 
 void modificarMateria(Materia **lista){
-   //Modificar atributos como en Estudiante
+    Materia *actual = *lista;
+    int ID;
+
+    if(actual== NULL){
+        printf("La lista esta vacia!");
+    }
+
+    printf("Ingrese id de la materia a modificar:\n");
+    scanf("%d",&ID);
+
+    while(actual !=NULL){
+        if (actual->id == ID){
+            printf("Inserte el nuevo nombre:\n");
+            scanf("%s",actual->nombre);
+            printf("Cambio realizado\n\n");
+        }
+        actual = actual->sig;
+    }
 }
 
 void eliminarMateria(Materia **lista){
-    //Eliminar como en Estudiante
+    int ID;
+    printf("Ingrese id de la materia a eliminar:\n");
+    scanf("%d",&ID);
+    Materia *actual = *lista;
+    Materia *anterior = NULL;
+    while((actual != NULL)&&(actual->id != ID)){
+        anterior = actual;
+        actual = actual->sig;
+    }
+    if(actual == NULL){
+        printf("No se encontro la materia o la Lista esta Vacia!\n\n");
+    }else{
+        if (*lista == actual) // el primer elemento
+            *lista = actual->sig;
+        else
+            anterior->sig = actual->sig;
+        free(actual);
+
+        printf("Materia ELIMINADO!\n\n");
+    }
+}
+
+bool aprobado(int nota){
+    return nota >=4;
 }
 
 void ordenarMaterias(Materia **lista){

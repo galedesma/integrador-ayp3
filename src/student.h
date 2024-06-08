@@ -10,6 +10,7 @@ typedef struct student{
     char apellido[maxChar];
     int edad;
     int id;
+    struct subject *anotadas;
     struct student *sig;
 } Estudiante;
 
@@ -25,7 +26,7 @@ void eliminarEstudiante(Estudiante **lista);
 
 void incribirAMateria(Estudiante **listaEst, Materia **listaMat);
 
-void rendirMateria(Estudiante **listaEst, Materia **listaMat);
+void rendirMateria(Estudiante **listaEst);
 
 void ordenar(Estudiante **lista);
 
