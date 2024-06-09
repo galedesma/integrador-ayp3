@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "subject.h"
 #define maxChar 30
+#define DIRECTORIO "../archivos/estudiantes/"
+#define EXTENSION ".csv"
 
 typedef struct student{
     char nombre[maxChar];
@@ -43,6 +45,27 @@ void darDeAltaEstudiante (Estudiante **lista){
         cursor->sig = nuevoEstudiante;
     }
     printf("el id del estudiante es: %d\n\n",nuevoEstudiante->id);
+}
+
+void darDeAltaEstudianteAlt(Estudiante **lista, const char* nombre, const char* apellido, int edad) {
+    Estudiante *nuevoEstudiante  = malloc(sizeof(Estudiante));
+
+    strncpy(nuevoEstudiante->nombre, nombre, sizeof(nuevoEstudiante->nombre) - 1);
+    strncpy(nuevoEstudiante->apellido, apellido, sizeof(nuevoEstudiante->apellido) - 1);
+    nuevoEstudiante->edad = edad;
+
+    nuevoEstudiante->sig = NULL;
+    if(*lista == NULL){
+        nuevoEstudiante->id = 1;
+        *lista = nuevoEstudiante;
+    } else {
+        Estudiante *cursor = *lista;
+        while(cursor->sig != NULL){
+            cursor = cursor->sig;
+        }
+        nuevoEstudiante->id = cursor->id + 1;
+        cursor->sig = nuevoEstudiante;
+    }
 }
 
 void buscarEstudiante(Estudiante **lista) {
@@ -279,4 +302,53 @@ void ordenar(Estudiante **lista){
     //Ordenar lista alfabeticamente?
 }
 
+void cargarEstudiantesDesdeCsv(Estudiante **lista, char *nombreArchivo) {
+    const int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    char* rutaAlArchivo = malloc(longNombreArchivo + 1);
+    snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    FILE *archivo = fopen(rutaAlArchivo, "r");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        printf("Volviendo al menu anterior.\n\n");
+        return;
+    }
 
+    char buffer[1024];
+    int fila = 0;
+
+    while(fgets(buffer, sizeof(buffer), archivo)) {
+        int columna = 0;
+        fila++;
+
+        // Salteamos primer fila, consiste de encabezados.
+        if (fila == 1)
+            continue;
+
+        const char* valor = strtok(buffer, ",");
+
+        while (valor) {
+            // Columna 1, posiblemente tenga que eliminarla dado que el id es autoincremental
+            if (columna == 0) {
+                valor = strtok(NULL, ",");
+                columna++;
+            }
+
+            // Columna 2, nombre
+            const char * nombre = valor;
+            valor = strtok(NULL, ",");
+            columna++;
+
+            // Columna 3, apellido
+            const char* apellido = valor;
+            valor = strtok(NULL, ",");
+            columna++;
+
+            // Columna 4, edad
+            const int edad = atoi(valor);
+            valor = strtok(NULL, ",");
+            columna++;
+
+            darDeAltaEstudianteAlt(lista, nombre, apellido, edad);
+        }
+    }
+}

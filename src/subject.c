@@ -131,8 +131,9 @@ void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
     snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
     FILE *archivo = fopen(rutaAlArchivo, "r");
     if (archivo == NULL) {
-        perror("Error al abrir el archivo.\n");
-        exit(EXIT_FAILURE);
+        perror("Error al abrir el archivo");
+        printf("Volviendo al menu anterior.\n\n");
+        return;
     }
 
     char buffer[1024];
