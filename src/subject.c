@@ -38,6 +38,27 @@ void darDeAltaMateria (Materia **lista){
     printf("el id de la Materia es: %d\n\n",nuevaMateria->id);
 }
 
+//Quizás sea necesario refactorizar funciones para desacoplar la creación de la Materia
+//De los printf y scanf
+void darDeAltaMateriaAlt(Materia **lista, const char* nombre) {
+    Materia *nuevaMateria  = malloc(sizeof(Materia));
+
+    strncpy(nuevaMateria->nombre, nombre, sizeof(nuevaMateria->nombre) -1);
+
+    nuevaMateria->sig = NULL;
+    if(*lista == NULL){
+        nuevaMateria->id = 1;
+        *lista = nuevaMateria;
+    } else {
+        Materia *cursor = *lista;
+        while(cursor->sig != NULL){
+            cursor = cursor->sig;
+        }
+        nuevaMateria->id = cursor->id + 1;
+        cursor->sig = nuevaMateria;
+    }
+}
+
 
 void listarMaterias(Materia *lista){
     if(lista == NULL){
@@ -110,15 +131,29 @@ void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo, size_t maxRegi
     }
 
     char buffer[1024];
-    size_t cantRegistros = 0;
+    int fila = 0;
 
-    while(fgets(buffer, sizeof(buffer), archivo) && cantRegistros < maxRegistros) {
-        char *token = strtok(buffer, ",");
-        if (token) {
-            strcpy(lista[cantRegistros]->nombre, token);
-            token = strtok(NULL, ",");
-            lista[cantRegistros]->id = atoi(token);
-            ++cantRegistros;
+    while(fgets(buffer, sizeof(buffer), archivo)) {
+        int columna = 0;
+        fila++;
+
+        // Salteamos primer fila, consiste de encabezados.
+        if (fila == 1)
+            continue;
+
+        char* valor = strtok(buffer, ",");
+
+        while (valor) {
+            // Columna 1, posiblemente tenga que eliminarla dado que el id es autoincremental
+            if (columna == 0) {
+                valor = strtok(NULL, ",");
+                columna++;
+            }
+
+            // Columna 2, Nombre de materia
+            darDeAltaMateriaAlt(lista, valor);
+            valor = strtok(NULL, ",");
+            columna++;
         }
     }
     fclose(archivo);
