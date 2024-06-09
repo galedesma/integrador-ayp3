@@ -14,6 +14,7 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
         printf("[6] Incribir estudiante a materia\n");
         printf("[7] Rendir materia\n");
         printf("[8] Cargar estudiantes desde .csv\n");
+        printf("[9] Guardar estudiantes en .csv\n");
         printf("[0] Volver al Menu Principal\n");
         scanf("%d",&opcion);
 
@@ -51,6 +52,13 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
                 printf("Ingrese el nombre del archivo:\n");
                 scanf("%s",nombreArchivo);
                 cargarEstudiantesDesdeCsv(listaEst, nombreArchivo);
+                break;
+            }
+            case 9: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                guardarEstudiantesEnCsv(listaEst, nombreArchivo);
                 break;
             }
         }

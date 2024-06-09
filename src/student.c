@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "subject.h"
+
 #define maxChar 30
 #define DIRECTORIO "../archivos/estudiantes/"
 #define EXTENSION ".csv"
@@ -47,7 +48,7 @@ void darDeAltaEstudiante (Estudiante **lista){
     printf("el id del estudiante es: %d\n\n",nuevoEstudiante->id);
 }
 
-void darDeAltaEstudianteAlt(Estudiante **lista, const char* nombre, const char* apellido, int edad) {
+void darDeAltaEstudianteAlt(Estudiante **lista, const char* nombre, const char* apellido, const int edad) {
     Estudiante *nuevoEstudiante  = malloc(sizeof(Estudiante));
 
     strncpy(nuevoEstudiante->nombre, nombre, sizeof(nuevoEstudiante->nombre) - 1);
@@ -351,4 +352,27 @@ void cargarEstudiantesDesdeCsv(Estudiante **lista, char *nombreArchivo) {
             darDeAltaEstudianteAlt(lista, nombre, apellido, edad);
         }
     }
+}
+
+void guardarEstudiantesEnCsv(Estudiante **lista, char *nombreArchivo) {
+    Estudiante *actual = *lista;
+
+    if(actual == NULL) {
+        printf("No hay estudiantes para guardar!\n\n");
+        return;
+    }
+
+    const int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    char* rutaAlArchivo = malloc(longNombreArchivo + 1);
+    snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    FILE *archivo = fopen(rutaAlArchivo, "w+");
+
+    fprintf(archivo, "Id,Nombre,Apellido,Edad\n");
+
+    while(actual != NULL) {
+        fprintf(archivo,"%d,%s,%s,%d", actual->id, actual->nombre, actual->apellido, actual->edad);
+        actual = actual->sig;
+    }
+
+    fclose(archivo);
 }
