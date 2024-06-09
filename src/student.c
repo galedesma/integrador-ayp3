@@ -355,6 +355,7 @@ void cargarEstudiantesDesdeCsv(Estudiante **lista, char *nombreArchivo) {
 }
 
 void guardarEstudiantesEnCsv(Estudiante **lista, char *nombreArchivo) {
+
     Estudiante *actual = *lista;
 
     if(actual == NULL) {
@@ -370,7 +371,7 @@ void guardarEstudiantesEnCsv(Estudiante **lista, char *nombreArchivo) {
     fprintf(archivo, "Id,Nombre,Apellido,Edad\n");
 
     while(actual != NULL) {
-        fprintf(archivo,"%d,%s,%s,%d", actual->id, actual->nombre, actual->apellido, actual->edad);
+        fprintf(archivo,"%d,%s,%s,%d\n", actual->id, actual->nombre, actual->apellido, actual->edad);
         actual = actual->sig;
     }
 
