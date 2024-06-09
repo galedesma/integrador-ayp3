@@ -24,4 +24,4 @@ bool aprobado(int nota);
 
 void ordenarMaterias(Materia **lista);
 
-void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo, size_t maxRegistros);
+void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo);

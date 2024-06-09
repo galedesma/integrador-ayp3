@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "student.h"
-#define DIRECTORIO "../files/"
-#define EXTENSION ".csv"
 
 void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
     int opcion = 8;
@@ -85,11 +82,7 @@ void menuMaterias(Materia **lista){
                 char nombreArchivo[30];
                 printf("Ingrese el nombre del archivo:\n");
                 scanf("%s",nombreArchivo);
-                int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
-                char* rutaAlArchivo = malloc(longNombreArchivo + 1);
-                snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
-                printf("Ruta Completa al archivo: %s\n", rutaAlArchivo);
-                cargarMateriasDesdeCsv(lista, rutaAlArchivo, 100);
+                cargarMateriasDesdeCsv(lista, nombreArchivo);
                 break;
             }
         }

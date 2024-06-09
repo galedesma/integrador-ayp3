@@ -5,6 +5,8 @@
 #include <string.h>
 
 #define maxChar 30
+#define DIRECTORIO "../files/"
+#define EXTENSION ".csv"
 
 typedef struct subject{
     char nombre[maxChar];
@@ -123,8 +125,11 @@ void ordenarMaterias(Materia **lista){
     //Ordenar lista alfabeticamente?
 }
 
-void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo, size_t maxRegistros) {
-    FILE *archivo = fopen(nombreArchivo, "r");
+void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
+    int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    char* rutaAlArchivo = malloc(longNombreArchivo + 1);
+    snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    FILE *archivo = fopen(rutaAlArchivo, "r");
     if (archivo == NULL) {
         perror("Error al abrir el archivo.\n");
         exit(EXIT_FAILURE);
