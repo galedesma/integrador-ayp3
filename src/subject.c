@@ -4,7 +4,7 @@
 #include <intrin.h>
 #include <string.h>
 
-#define maxChar 30
+#define maxChar 60
 #define DIRECTORIO "../files/"
 #define EXTENSION ".csv"
 
@@ -126,7 +126,7 @@ void ordenarMaterias(Materia **lista){
 }
 
 void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
-    int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    const int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
     char* rutaAlArchivo = malloc(longNombreArchivo + 1);
     snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
     FILE *archivo = fopen(rutaAlArchivo, "r");
@@ -146,7 +146,7 @@ void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
         if (fila == 1)
             continue;
 
-        char* valor = strtok(buffer, ",");
+        const char* valor = strtok(buffer, ",");
 
         while (valor) {
             // Columna 1, posiblemente tenga que eliminarla dado que el id es autoincremental
@@ -163,3 +163,28 @@ void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
     }
     fclose(archivo);
 };
+
+void guardarMateriasEnCsv(Materia **lista, char *nombreArchivo) {
+
+    Materia *actual = *lista;
+
+    if(actual == NULL) {
+        printf("No hay materias para guardar!\n\n");
+        return;
+    }
+
+    const int longNombreArchivo = snprintf(NULL, 0, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    char* rutaAlArchivo = malloc(longNombreArchivo + 1);
+    snprintf(rutaAlArchivo, longNombreArchivo + 1, "%s%s%s", DIRECTORIO, nombreArchivo, EXTENSION);
+    FILE *archivo = fopen(rutaAlArchivo, "w+");
+
+    fprintf(archivo, "Id,Nombre\n");
+
+
+    while(actual != NULL) {
+        fprintf(archivo,"%d,%s", actual->id, actual->nombre);
+        actual = actual->sig;
+    }
+
+    fclose(archivo);
+}

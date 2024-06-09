@@ -58,6 +58,7 @@ void menuMaterias(Materia **lista){
         printf("[3] Modificar Datos\n");
         printf("[4] Eliminar\n");
         printf("[5] Cargar Materias desde .csv\n");
+        printf("[6] Guardar Materias en .csv\n");
         printf("[0] Volver al Menu principal\n");
         scanf("%d",&opcion);
 
@@ -83,6 +84,13 @@ void menuMaterias(Materia **lista){
                 printf("Ingrese el nombre del archivo:\n");
                 scanf("%s",nombreArchivo);
                 cargarMateriasDesdeCsv(lista, nombreArchivo);
+                break;
+            }
+            case 6: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                guardarMateriasEnCsv(lista, nombreArchivo);
                 break;
             }
         }
