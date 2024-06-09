@@ -28,8 +28,6 @@ void incribirAMateria(Estudiante **listaEst, Materia **listaMat);
 
 void rendirMateria(Estudiante **listaEst);
 
-void ordenar(Estudiante **lista);
-
 void cargarEstudiantesDesdeCsv(Estudiante **lista, char *nombreArchivo);
 
 void guardarEstudiantesEnCsv(Estudiante **lista, char *nombreArchivo);

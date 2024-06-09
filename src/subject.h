@@ -22,8 +22,6 @@ void eliminarMateria(Materia **lista);
 
 bool aprobado(int nota);
 
-void ordenarMaterias(Materia **lista);
-
 void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo);
 
 void guardarMateriasEnCsv(Materia **lista, char *nombreArchivo);

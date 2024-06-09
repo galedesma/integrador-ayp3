@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdbool.h>
-#include <intrin.h>
 #include <string.h>
 
 #define maxChar 60
@@ -77,8 +76,9 @@ void modificarMateria(Materia **lista){
     Materia *actual = *lista;
     int ID;
 
-    if(actual== NULL){
+    if(actual== NULL) {
         printf("La lista esta vacia!");
+        return;
     }
 
     printf("Ingrese id de la materia a modificar:\n");
@@ -119,10 +119,6 @@ void eliminarMateria(Materia **lista){
 
 bool aprobado(int nota){
     return nota >=4;
-}
-
-void ordenarMaterias(Materia **lista){
-    //Ordenar lista alfabeticamente?
 }
 
 void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {

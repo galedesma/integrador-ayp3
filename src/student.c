@@ -19,8 +19,6 @@ typedef struct student{
 
 
 void darDeAltaEstudiante (Estudiante **lista){
-
-    int id;
     Estudiante *nuevoEstudiante  = malloc(sizeof(Estudiante));
     printf("Ingrese el nombre:\n");
     scanf("%s",nuevoEstudiante->nombre);
@@ -148,9 +146,7 @@ void listarEstudiantes (Estudiante *lista){
     }else{
         while(lista != NULL) {
             printf("ID: %d, Nombre: %s, Apellido: %s, Edad: %d\n", lista->id, lista->nombre, lista->apellido, lista->edad);
-
             lista = lista->sig;
-
         }
     }
 }
@@ -263,7 +259,6 @@ void incribirAMateria(Estudiante **listaEst, Materia **listaMat){
 }
 
 void rendirMateria(Estudiante **listaEst){
-    //Dada una materia en anotadas, agregar score (y quizás setear approved true/false dependiendo la nota)
     int ID;
     int nota;
     char nombreMat[maxChar];
@@ -297,10 +292,6 @@ void rendirMateria(Estudiante **listaEst){
         }
         estudiantes = estudiantes->sig;
     }
-}
-
-void ordenar(Estudiante **lista){
-    //Ordenar lista alfabeticamente?
 }
 
 void cargarEstudiantesDesdeCsv(Estudiante **lista, char *nombreArchivo) {
