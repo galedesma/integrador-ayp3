@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include "student.h"
 
 void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
@@ -12,6 +13,8 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
         printf("[5] Eliminar\n");
         printf("[6] Incribir estudiante a materia\n");
         printf("[7] Rendir materia\n");
+        printf("[8] Cargar estudiantes desde .csv\n");
+        printf("[9] Guardar estudiantes en .csv\n");
         printf("[0] Volver al Menu Principal\n");
         scanf("%d",&opcion);
 
@@ -41,8 +44,22 @@ void menuEstudiantes(Estudiante **listaEst, Materia **listaMat){
                 break;
             }
             case 7: {
-            rendirMateria(listaEst);
-            break;
+                rendirMateria(listaEst);
+                break;
+            }
+            case 8: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                cargarEstudiantesDesdeCsv(listaEst, nombreArchivo);
+                break;
+            }
+            case 9: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                guardarEstudiantesEnCsv(listaEst, nombreArchivo);
+                break;
             }
         }
     }
@@ -56,6 +73,8 @@ void menuMaterias(Materia **lista){
         printf("[2] Listar Materias\n");
         printf("[3] Modificar Datos\n");
         printf("[4] Eliminar\n");
+        printf("[5] Cargar Materias desde .csv\n");
+        printf("[6] Guardar Materias en .csv\n");
         printf("[0] Volver al Menu principal\n");
         scanf("%d",&opcion);
 
@@ -74,6 +93,20 @@ void menuMaterias(Materia **lista){
             }
             case 4: {
                 eliminarMateria(lista);
+                break;
+            }
+            case 5: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                cargarMateriasDesdeCsv(lista, nombreArchivo);
+                break;
+            }
+            case 6: {
+                char nombreArchivo[30];
+                printf("Ingrese el nombre del archivo:\n");
+                scanf("%s",nombreArchivo);
+                guardarMateriasEnCsv(lista, nombreArchivo);
                 break;
             }
         }
