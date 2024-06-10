@@ -5,7 +5,7 @@
 #include "subject.h"
 
 #define maxChar 30
-#define DIRECTORIO "../archivos/estudiantes/"
+#define DIRECTORIO ".//archivos/estudiantes/"
 #define EXTENSION ".csv"
 
 typedef struct student{
