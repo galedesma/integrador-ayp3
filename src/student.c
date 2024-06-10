@@ -255,7 +255,7 @@ void incribirAMateria(Estudiante **listaEst, Materia **listaMat){
         }
         estudiantes = estudiantes->sig;
     }
-    printf("Estudiante INSCRIPTO en %s\n\n",nombreMat);
+    printf("Estudiante INSCRIPTO en %s\n\n",materiaAInscribir->nombre);
 }
 
 void rendirMateria(Estudiante **listaEst){

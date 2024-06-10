@@ -77,7 +77,7 @@ void modificarMateria(Materia **lista){
     int ID;
 
     if(actual== NULL) {
-        printf("La lista esta vacia!");
+        printf("La lista esta vacia!\n");
         return;
     }
 
