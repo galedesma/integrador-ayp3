@@ -4,7 +4,7 @@
 #include <string.h>
 
 #define maxChar 60
-#define DIRECTORIO "../archivos/materias/"
+#define DIRECTORIO ".//archivos/materias/"
 #define EXTENSION ".csv"
 
 typedef struct subject{
@@ -77,7 +77,7 @@ void modificarMateria(Materia **lista){
     int ID;
 
     if(actual== NULL) {
-        printf("La lista esta vacia!");
+        printf("La lista esta vacia!\n");
         return;
     }
 
@@ -159,7 +159,7 @@ void cargarMateriasDesdeCsv(Materia **lista, char *nombreArchivo) {
         }
     }
     fclose(archivo);
-};
+}
 
 void guardarMateriasEnCsv(Materia **lista, char *nombreArchivo) {
 
